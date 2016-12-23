@@ -48,7 +48,7 @@ class Column extends Component{
   }
 
   textChangeHandler = function () {
-    this.setState(state => ({newItem: this.refs.myTextField.getValue()}));
+    this.setState(state => ({newItem: this.refs.newItemTextField.getValue()}));
   }
 }
 export default Column;
