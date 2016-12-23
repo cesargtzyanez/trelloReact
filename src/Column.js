@@ -25,7 +25,7 @@ class Column extends Component{
   render(){
     return(
         <Card className="column">
-          <CardHeader title={this.props.title}/>
+          <CardHeader title={this.props.title} subtitle={this.state.numChildren + ' items'}/>
             <List>{this.state.itemsList}</List>
             <TextField
               ref="newItemTextField"
