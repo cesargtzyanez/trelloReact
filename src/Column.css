@@ -1,0 +1,12 @@
+.column{
+  margin: 1.5em;
+  padding: 0.5em;
+  width: 25%;
+  display: inline-block;
+  float: left;
+}
+
+.listItem{
+  background-color: #eee !important;
+  border-bottom: solid 1px #ccc !important;
+}
