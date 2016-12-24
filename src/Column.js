@@ -20,14 +20,17 @@ class Column extends Component{
     };
     this.addItemHandler = this.addItemHandler.bind(this);
     this.textChangeHandler = this.textChangeHandler.bind(this);
-    this.deleteItemHandler = this.deleteItemHandler.bind(this);
   }
 
   render(){
     return(
         <Card className="column">
           <CardTitle title={this.props.title} subtitle={this.state.numChildren + ' items'}/>
-            <List>{this.state.itemsList}</List>
+            <List>
+              {this.state.itemsList.map(function (item) {
+                return <ListItem className="listItem" key={'item'+item.id} primaryText={item.text} />
+              })}
+            </List>
             <TextField
               ref="newItemTextField"
               hintText={"New " + this.props.title + " item"}
@@ -41,7 +44,12 @@ class Column extends Component{
 
   addItemHandler = function () {
     if(this.state.newItem !== ''){
-      this.state.itemsList.push(<ListItem className="listItem" rightIcon={<ActionDelete key={'item_'+this.state.numChildren} onClick={this.deleteItemHandler} />} key={'item'+this.state.numChildren} primaryText={this.state.newItem} />);
+      var newItem = {
+        id: this.state.numChildren,
+        text: this.state.newItem
+      }
+      this.state.itemsList.push(newItem);
+      debugger;
       this.setState(state => ({newItem: ''}));
       this.refs.newItemTextField.getInputNode().value='';
       this.setState(state => ({numChildren: state.numChildren + 1}));
@@ -50,10 +58,6 @@ class Column extends Component{
 
   textChangeHandler = function () {
     this.setState(state => ({newItem: this.refs.newItemTextField.getValue()}));
-  }
-
-  deleteItemHandler = function (e) {
-
   }
 }
 export default Column;
